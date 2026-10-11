@@ -7,7 +7,7 @@ from enum import StrEnum
 
 from pydantic import BaseModel, Field, ConfigDict
 
-from typing import Any, Dict
+from typing import Any, Dict, Literal
 
 from src.schema.documents import Chunk
 
@@ -16,6 +16,25 @@ class RetrievalStrategy(StrEnum):
     SPARSE = "sparse"
     HYBRID = "hybrid"
 
+CrossEncoderModel = Literal[
+    "cross-encoder/ms-marco-MiniLM-L-6-v2", 
+    "cross-encoder/ettin-reranker-32m-v1",
+    "cross-encoder/ms-marco-MiniLM-L-12-v2",
+    "BAAI/bge-reranker-v2-m",
+    "Alibaba-NLP/gte-reranker-modernbert-base",
+    "mixedbread-ai/mxbai-rerank-large-v2",
+    "nvidia/llama-nemotron-rerank-1b-v2",
+    "Qwen/Qwen3-Reranker-4B"
+]
+CohereModel = Literal[
+    "rerank-v3.5",
+    "rerank-english-v3.0"
+]
+
+FlashRankModel = Literal[
+    "ms-marco-MiniLM-L-6-v2", "rank-T5-flan"
+]
+    
 class ScoreBreakdown(BaseModel):
     """Detailed score tracking to avoid black-box ranking bugs."""
     model_config = ConfigDict(frozen=True)

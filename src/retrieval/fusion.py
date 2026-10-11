@@ -12,7 +12,7 @@ class RRF:
     def __init__(self, k=60):
         self.k = k
 
-    def fuse(self, sparse_results: List[ScoredChunk], dense_results: List[ScoredChunk]):
+    def fuse(self, sparse_results: List[ScoredChunk], dense_results: List[ScoredChunk]) -> List[ScoredChunk]:
         rrf_scores = {}
 
         for s_chunk in sparse_results:
